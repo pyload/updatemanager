@@ -111,7 +111,7 @@ class UpdateManager {
     }
 }
 
-if((! isset($_GET['key'])) || (sha1(trim($_GET['key'])) != '7739cb242fe4e9506a6488d96de0b187fb170ae'))
+if((! isset($_GET['key'])) || (sha1(trim($_GET['key'])) != 'b7739cb242fe4e9506a6488d96de0b187fb170ae'))
     exit('Invalid key. Exiting.');
 
 $um = new UpdateManager;
