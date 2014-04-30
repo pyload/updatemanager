@@ -1,20 +1,19 @@
 <?php
-/*
 define('PLUGIN_LIST', getenv('OPENSHIFT_DATA_DIR') . 'plugins.txt');
 define('SQLITEDB', getenv('OPENSHIFT_DATA_DIR') . 'plugins.sqlite');
 define('BLACKLIST_PATH', getenv('OPENSHIFT_REPO_DIR') . 'blacklist.txt');
 define('REPO_PATH', getenv('OPENSHIFT_DATA_DIR') . 'pyload-repo/');
 define('REPO_PLUGINS_PATH', REPO_PATH . '/module/plugins/');
 define('LOGDIR', getenv('OPENSHIFT_LOG_DIR'));
-* */
 
-/* Constants for local test env */
+/* Constants for local test env
 define('PLUGIN_LIST', 'plugins.txt');
 define('SQLITEDB', 'plugins.sqlite');
 define('BLACKLIST_PATH', 'blacklist.txt');
 define('REPO_PATH', 'pyload-repo');
 define('REPO_PLUGINS_PATH', REPO_PATH . '/module/plugins/');
 define('LOGDIR', 'logs');
+*/
 
 define('BRANCH', 'stable');
 
