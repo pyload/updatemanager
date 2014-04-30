@@ -1,20 +1,24 @@
 <?php
+/*
 define('PLUGIN_LIST', getenv('OPENSHIFT_DATA_DIR') . 'plugins.txt');
 define('SQLITEDB', getenv('OPENSHIFT_DATA_DIR') . 'plugins.sqlite');
 define('BLACKLIST_PATH', getenv('OPENSHIFT_REPO_DIR') . 'blacklist.txt');
 define('REPO_PATH', getenv('OPENSHIFT_DATA_DIR') . 'pyload-repo/');
 define('REPO_PLUGINS_PATH', REPO_PATH . '/module/plugins/');
+define('LOGDIR', getenv('OPENSHIFT_LOG_DIR'));
+* */
 
-/* Constants for local test env
+/* Constants for local test env */
 define('PLUGIN_LIST', 'plugins.txt');
 define('SQLITEDB', 'plugins.sqlite');
 define('BLACKLIST_PATH', 'blacklist.txt');
 define('REPO_PATH', 'pyload-repo');
 define('REPO_PLUGINS_PATH', REPO_PATH . '/module/plugins/');
-*/
+define('LOGDIR', 'logs');
 
 define('BRANCH', 'stable');
 
+require 'vendor/autoload.php';
 require_once('lib/database.inc.php');
 require_once('lib/git.inc.php');
 
@@ -22,14 +26,16 @@ class UpdateManager {
 
     private $git;
     private $db;
+    private $l;
 
     public $last_commit;
     public $EXCLUDE = array('.', '..', '__init__.py', 'AbstractExtractor.py');
 
-    function __construct() {
-        $this->git = new GitCMD(REPO_PATH, BRANCH);
+    function __construct($l) {
+        $this->l = $l;
+        $this->git = new GitCMD($l, REPO_PATH, BRANCH);
         $this->last_commit = $this->git->last_commit();
-        print "Last commit: $this->last_commit\n";
+        $this->l->info("Last commit: $this->last_commit");
         $this->db = new umSQLite3(SQLITEDB);
     }
 
@@ -44,7 +50,7 @@ class UpdateManager {
         fclose($f);
         $status = preg_match('/__version__\s*=\s*[\'"]([^\'"]+)[\'"]/i', $content, $m);
         if(! isset($m[1])) {
-            printf("WARNING: Unable to detect version for %s/%s\n", $type, $name);
+            $this->l->error("Unable to detect version for $type/$name");
             return null;
         }
         else {
@@ -65,20 +71,20 @@ class UpdateManager {
             foreach($files as $file) {
                 if(in_array($file, $this->EXCLUDE)) {
                     // This plugin is in the EXCLUDE list! Skipping.
-                    print "Skipping $subfolder/$file\n";
+                    $this->l->info("Skipping $subfolder/$file");
                     continue;
                 }
                 $file_version = $this->get_version($subfolder, $file);
                 switch($this->db->plugin_exists($subfolder, $file, $file_version)) {
                     case 0:
                         // The plugin is not in the DB. Create a new entry!
-                        print "New plugin $subfolder/$file! Adding to the database\n";
+                        $this->l->info("New plugin $subfolder/$file! Adding to the database");
                         $this->db->insert_plugin($subfolder, $file, $this->last_commit, $file_version);
                         break;
                     case 1:
                         // The plugin is in the database but may be outdated!
                         // If version number has changed update both version and sha
-                        print "$subfolder/$file updated to $file_version\n";
+                        $this->l->info("$subfolder/$file updated to $file_version");
                         $this->db->update_plugin($subfolder, $file, $this->last_commit, $file_version);
                         break;
                     case 2:
@@ -92,9 +98,8 @@ class UpdateManager {
     }
 
     public function remove_deleted() {
-        print 'Deleting removed plugins... ';
         $n_removed = $this->db->delete_plugins();
-        print "$n_removed deleted!\n";
+        $this->l->info("$n_removed removed plugins deleted");
     }
 
     public function write_static() {
@@ -111,15 +116,20 @@ class UpdateManager {
     }
 }
 
-if((! isset($_GET['key'])) || (sha1(trim($_GET['key'])) != 'b7739cb242fe4e9506a6488d96de0b187fb170ae'))
+if(php_sapi_name() != 'cli' && ((! isset($_GET['key'])) || (sha1(trim($_GET['key'])) != 'b7739cb242fe4e9506a6488d96de0b187fb170ae'))) {
+    $l->warning('Invalid key');
     exit('Invalid key. Exiting.');
+}
 
-$um = new UpdateManager;
+$l = new Katzgrau\KLogger\Logger(LOGDIR);
+$l->info('Update process started');
+
+$um = new UpdateManager($l);
 $um->update_db();
 $um->remove_deleted();
-print "DB update completed!\n";
+$l->info('DB update completed');
 
 // The DB is now updated! Let's create the static file.
 $um->write_static();
-print "Plugin list created!\n";
+$l->info('Plugin list created');
 ?>

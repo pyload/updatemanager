@@ -1,10 +1,12 @@
 <?php
 class GitCMD {
 
-    private $git_path = null;
-    private $branch = null;
+    private $git_path;
+    private $branch;
+    private $l;
 
-    public function __construct($directory, $branch='master') {
+    public function __construct($l, $directory, $branch='master') {
+        $this->l = $l;
         $this->git_path = $directory;
         $this->branch = $branch;
         if(!file_exists($directory . '/.git')) {
@@ -20,7 +22,8 @@ class GitCMD {
     public function gitclone() {
         $output = shell_exec("git clone -b $this->branch https://github.com/pyload/pyload.git $this->git_path");
         if(is_null($output)) {
-            exit("An error occurred cloning the git repo. Exiting. Details:\n" . $output);
+            $this->l->error('An error occurred cloning the git repo. Exiting.');
+            exit("An error occurred cloning the git repo. Exiting.\n");
         }
     }
 
@@ -31,7 +34,8 @@ class GitCMD {
     public function pull() {
         $output = shell_exec("cd $this->git_path; git pull");
         if(is_null($output)) {
-            exit("An error occurred fetching the git repo. Exiting. Details:\n" . $output);
+            $this->l->error('An error occurred fetching the git repo. Exiting.');
+            exit("An error occurred fetching the git repo. Exiting.\n");
         }
     }
 
