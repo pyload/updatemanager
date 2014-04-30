@@ -4,3 +4,13 @@ php:
 install:
   - composer install
 script: true  # Skipping phpunit
+deploy:
+  provider: openshift
+  user:
+    secure: 24XmzXKzv2Acp4yAUp/kDn6EyaNeCkjw6X6C/H9s4HqaWckALhZ73QoOm1Lm7aflIrIgQWvo84aTF4MRLDKL3TFQtb6oC2bEFJM4/J9EQhDaazbQGX7e/karXMLSOugRwtYDRRGuWKaMzwxetNAKp35R3q3H7dOLtcOcI9tCWCU=
+  password:
+    secure: xf0fOsXA3kZ8ZGmE26CculaJRgack/zgqCdlPdpYRhh4Q9eI3fQlTAfhbU/eKe/zHQkIG0ArVNJMnQrq2m2rVYJEJpDao6s+hztQl7MUdB9D2aR2IIx+/8rl1CQVLM0BqMcird0BdLBQu0fjZI7+xFtRkpwHuax97ZdkzMKakys=
+  app: updatemanager
+  domain: spyload
+  on:
+    repo: stickell/updatemanager
