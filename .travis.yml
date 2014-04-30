@@ -1,9 +1,17 @@
 language: php
+
 php:
   - 5.4
+
 install:
-  - composer install
-script: true  # Skipping phpunit
+  - composer install --dev --no-interaction
+
+script:
+  - phpunit -c tests/phpunit.xml --bootstrap vendor/autoload.php
+
+after_script:
+  - php vendor/bin/coveralls -v
+
 deploy:
   provider: openshift
   user:
