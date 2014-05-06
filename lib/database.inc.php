@@ -8,7 +8,7 @@ class umSQLite3 extends SQLite3 {
 
     private function setup() {
         $this->exec('CREATE TABLE IF NOT EXISTS plugins
-            (name TEXT, type TEXT, sha CHARACTER(7), version TEXT, del BOOLEAN)');
+            (name TEXT, type TEXT, sha VARCHAR(40), version TEXT, del BOOLEAN)');
         $this->exec('UPDATE plugins SET del=1');
     }
 
