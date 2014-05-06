@@ -6,7 +6,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
     protected static $db;
     
     public static function setUpBeforeClass() {
-        self::$db = new umSQLite3('tests/test.db');
+        self::$db = new umSQLite3(':memory:');
     }
     
     public static function tearDownAfterClass() {
