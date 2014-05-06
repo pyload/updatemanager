@@ -1,14 +1,24 @@
 language: php
 
 php:
+  - 5.6
+  - 5.5
   - 5.4
+  - 5.3
+
+matrix:
+  # The app will be deployed on PHP 5.4
+  # so other versions are allowed to fail.
+  allow_failures:
+    - 5.6
+    - 5.5
+    - 5.3
 
 install:
   - composer install --dev --no-interaction
 
 script:
-  - mkdir -p build/logs
-  - phpunit -c tests/phpunit.xml
+  - tests/run_tests.sh
 
 after_script:
   - php vendor/bin/coveralls -v
