@@ -1,0 +1,10 @@
+# Build files
+build
+composer.phar
+vendor
+
+# Local testing output
+logs
+plugins.sqlite
+plugins.txt
+pyload-repo
