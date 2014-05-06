@@ -19,5 +19,5 @@ fi
 # Clean useless files
 
 cd $OPENSHIFT_REPO_DIR
-rm composer.* .coveralls.yml .gitignore .travis.yml
+rm composer.* .coveralls.yml .gitignore README.md .travis.yml
 rm -r tests
