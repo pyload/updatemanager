@@ -4,6 +4,8 @@
 # up again.  This script gets executed directly, so it could be python, php,
 # ruby, etc.
 
+# Install composer dependencies
+
 export COMPOSER_HOME="$OPENSHIFT_DATA_DIR/.composer"
 
 if [ ! -f "$OPENSHIFT_DATA_DIR/composer.phar" ]; then
@@ -13,3 +15,9 @@ else
 fi
 
 ( unset GIT_DIR ; cd $OPENSHIFT_REPO_DIR ; php $OPENSHIFT_DATA_DIR/composer.phar install --no-dev )
+
+# Clean useless files
+
+cd $OPENSHIFT_REPO_DIR
+rm composer.* .coveralls.yml .gitignore .travis.yml
+rm -r tests
