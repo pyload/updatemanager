@@ -33,5 +33,6 @@ deploy:
   domain: spyload
   on:
     repo: stickell/updatemanager
+    branch: master
     php: 5.4
   skip_cleanup: true
