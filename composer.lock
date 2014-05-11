@@ -99,16 +99,16 @@
     "packages-dev": [
         {
             "name": "guzzle/guzzle",
-            "version": "v3.9.0",
+            "version": "v3.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "e4d12d7d6acccf75a5e504114e2df9195e494108"
+                "reference": "92d9934f2fca1da15178c91239576ae26e505e60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/e4d12d7d6acccf75a5e504114e2df9195e494108",
-                "reference": "e4d12d7d6acccf75a5e504114e2df9195e494108",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/92d9934f2fca1da15178c91239576ae26e505e60",
+                "reference": "92d9934f2fca1da15178c91239576ae26e505e60",
                 "shasum": ""
             },
             "require": {
@@ -187,7 +187,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-04-23 21:43:40"
+            "time": "2014-05-07 17:04:22"
         },
         {
             "name": "satooshi/php-coveralls",
@@ -573,17 +573,11 @@
             "time": "2014-04-18 20:37:09"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "satooshi/php-coveralls": 20
     },
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "platform": [],
+    "platform-dev": []
 }
