@@ -1,5 +1,5 @@
 # pyLoad Update Manager Server
-[![Build Status](https://travis-ci.org/stickell/updatemanager.svg?branch=master)](https://travis-ci.org/stickell/updatemanager) [![Coverage Status](https://coveralls.io/repos/stickell/updatemanager/badge.png?branch=master)](https://coveralls.io/r/stickell/updatemanager?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/5368f9e314c1582057000045/badge.png)](https://www.versioneye.com/user/projects/5368f9e314c1582057000045)
+[![Build Status](https://travis-ci.org/pyload/updatemanager.svg?branch=master)](https://travis-ci.org/pyload/updatemanager) [![Coverage Status](https://coveralls.io/repos/pyload/updatemanager/badge.png?branch=master)](https://coveralls.io/r/pyload/updatemanager?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/537a851114c1583cca00004a/badge.svg)](https://www.versioneye.com/user/projects/537a851114c1583cca00004a)
 
 This is the source code of the pyLoad Update Manager Server, **this software is for project administrators only and not for pyLoad's end users!**
 
