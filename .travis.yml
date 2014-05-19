@@ -32,7 +32,7 @@ deploy:
   app: updatemanager
   domain: spyload
   on:
-    repo: stickell/updatemanager
+    repo: pyload/updatemanager
     branch: master
     php: 5.4
   skip_cleanup: true
