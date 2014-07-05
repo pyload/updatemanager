@@ -2,3 +2,4 @@ hooks|SkipRev.py
 accounts|MegaDebrid.py
 hooks|MegaDebrid.py
 hoster|MegaDebrid.py
+hoster|PutlockerCom.py
