@@ -3,3 +3,7 @@ accounts|MegaDebrid.py
 hooks|MegaDebrid.py
 hoster|MegaDebrid.py
 hoster|PutlockerCom.py
+crypter|DownloadVimeoCom.py
+hooks|Vipleech4uCom.py
+hooks|ReloadCc.py
+hoster|ReloadCc.py
