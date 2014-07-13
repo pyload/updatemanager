@@ -1,9 +1,10 @@
-hooks|SkipRev.py
 accounts|MegaDebrid.py
+crypter|DownloadVimeoCom.py
+hooks|CaptchaTrader.py
 hooks|MegaDebrid.py
+hooks|ReloadCc.py
+hooks|SkipRev.py
+hooks|Vipleech4uCom.py
 hoster|MegaDebrid.py
 hoster|PutlockerCom.py
-crypter|DownloadVimeoCom.py
-hooks|Vipleech4uCom.py
-hooks|ReloadCc.py
 hoster|ReloadCc.py
