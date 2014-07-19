@@ -1,5 +1,6 @@
 accounts|MegaDebrid.py
 crypter|DownloadVimeoCom.py
+crypter|XfilesharingProFolder.py
 hooks|CaptchaTrader.py
 hooks|MegaDebrid.py
 hooks|ReloadCc.py
