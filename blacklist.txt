@@ -18,4 +18,3 @@ hoster|PandaPlanet.py
 hoster|Premium4Me.py
 hoster|PutlockerCom.py
 hoster|ReloadCc.py
-hoster|XFileSharingPro.py
