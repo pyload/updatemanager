@@ -3,7 +3,6 @@ accounts|MultiDebridCom.py
 accounts|Premium4Me.py
 accounts|ShareRapidCom.py
 crypter|DownloadVimeoCom.py
-crypter|SerienjunkiesOrg.py
 crypter|ShareRapidComFolder.py
 crypter|XfilesharingProFolder.py
 hooks|CaptchaTrader.py
