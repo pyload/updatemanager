@@ -5,7 +5,6 @@ accounts|ShareRapidCom.py
 crypter|DownloadVimeoCom.py
 crypter|HotfileFolderCom.py
 crypter|ShareRapidComFolder.py
-crypter|XfilesharingProFolder.py
 hooks|CaptchaTrader.py
 hooks|Ev0InFetcher.py
 hooks|MegaDebrid.py
@@ -16,7 +15,6 @@ hooks|SkipRev.py
 hooks|Vipleech4uCom.py
 hoster|MegaDebrid.py
 hoster|MultiDebridCom.py
-hoster|PandaPlanet.py
 hoster|Premium4Me.py
 hoster|PutlockerCom.py
 hoster|ReloadCc.py
