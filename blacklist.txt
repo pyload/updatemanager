@@ -13,6 +13,7 @@ hooks|Premium4Me.py
 hooks|ReloadCc.py
 hooks|SkipRev.py
 hooks|Vipleech4uCom.py
+hoster|File4safeCom.py
 hoster|MegaDebrid.py
 hoster|MultiDebridCom.py
 hoster|Premium4Me.py
