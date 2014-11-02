@@ -20,3 +20,6 @@ hoster|Premium4Me.py
 hoster|PutlockerCom.py
 hoster|ReloadCc.py
 hoster|ShareRapidCom.py
+internal|XFSPAccount.py
+internal|XFSPCrypter.py
+internal|XFSPHoster.py
