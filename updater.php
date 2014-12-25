@@ -28,7 +28,7 @@ class UpdateManager {
     private $l;
 
     public $last_commit;
-    public $EXCLUDE = array('.', '..', '__init__.py', 'AbstractExtractor.py');
+    public $EXCLUDE = array('.', '..', '__init__.py');
 
     function __construct($l) {
         $this->l = $l;
