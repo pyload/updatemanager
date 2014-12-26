@@ -1,5 +1,6 @@
 accounts|MegaDebrid.py
 accounts|MultiDebridCom.py
+accounts|NowVideoAt.py
 accounts|Premium4Me.py
 accounts|ShareRapidCom.py
 crypter|DownloadVimeoCom.py
@@ -21,6 +22,7 @@ hoster|Premium4Me.py
 hoster|PutlockerCom.py
 hoster|ReloadCc.py
 hoster|ShareRapidCom.py
+internal|AbstractExtractor.py
 internal|XFSPAccount.py
 internal|XFSPCrypter.py
 internal|XFSPHoster.py
