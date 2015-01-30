@@ -32,7 +32,7 @@ class GitCMD {
     }
 
     public function pull() {
-        $output = shell_exec("cd $this->git_path; git pull -s recursive -X theirs origin/$this->branch");
+        $output = shell_exec("cd $this->git_path; git pull -s recursive -X theirs");
         if(is_null($output)) {
             $this->l->error('An error occurred fetching the git repo. Exiting.');
             exit("An error occurred fetching the git repo. Exiting.\n");
