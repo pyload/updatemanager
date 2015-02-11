@@ -103,7 +103,7 @@ class UpdateManager {
 
     public function write_static() {
         $f = fopen(PLUGIN_LIST, 'w');
-        fwrite($f, "None\nhttps://raw.github.com/pyload/pyload/%(changeset)s/module/plugins/%(type)s/%(name)s\ntype|name|changeset|version");
+        fwrite($f, "None\nhttps://raw.githubusercontent.com/pyload/pyload/%(changeset)s/module/plugins/%(type)s/%(name)s\ntype|name|changeset|version");
         $db_rows = $this->db->get_rows();
         while($row = $db_rows->fetchArray(SQLITE3_ASSOC)) {
             fwrite($f, sprintf("\n%s|%s|%s|%s", $row['type'], $row['name'], $row['sha'], $row['version']));
