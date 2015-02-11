@@ -22,6 +22,7 @@ hooks|MultiDebridCom.py
 hooks|Premium4Me.py
 hooks|ReloadCc.py
 hooks|Vipleech4uCom.py
+hooks|WindowsPhoneToastNotify.py
 hoster|File4safeCom.py
 hoster|Keep2shareCC.py
 hoster|Keep2shareCc.py
