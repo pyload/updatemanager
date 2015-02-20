@@ -8,6 +8,7 @@ accounts|ShareRapidCom.py
 container|DLC_25.pyc
 container|DLC_26.pyc
 container|DLC_27.pyc
+container|LinkList.py
 crypter|C1neonCom.py
 crypter|DownloadVimeoCom.py
 crypter|Go4Up.py
