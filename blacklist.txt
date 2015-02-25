@@ -5,6 +5,7 @@ accounts|MultiDebridCom.py
 accounts|NowVideoAt.py
 accounts|Premium4Me.py
 accounts|ShareRapidCom.py
+captcha|captcha.py
 container|DLC_25.pyc
 container|DLC_26.pyc
 container|DLC_27.pyc
