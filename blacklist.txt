@@ -10,12 +10,14 @@ container|DLC_25.pyc
 container|DLC_26.pyc
 container|DLC_27.pyc
 container|LinkList.py
+crypter|DailymotionBatch.py
 crypter|C1neonCom.py
 crypter|DownloadVimeoCom.py
 crypter|Go4Up.py
 crypter|HotfileFolderCom.py
 crypter|Movie2kTo.py
 crypter|ShareRapidComFolder.py
+crypter|YoutubeBatch.py
 hooks|Captcha9kw.py
 hooks|CaptchaTrader.py
 hooks|Ev0InFetcher.py
