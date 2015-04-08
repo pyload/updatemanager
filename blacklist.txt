@@ -40,6 +40,7 @@ hoster|PutlockerCom.py
 hoster|ReloadCc.py
 hoster|Share4webCom.py
 hoster|ShareRapidCom.py
+hoster|Solidfiles.py
 hoster|Vipleech4uCom.py
 internal|AbstractExtractor.py
 internal|XFSPAccount.py
