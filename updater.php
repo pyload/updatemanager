@@ -65,7 +65,7 @@ class UpdateManager {
     }
 
     public function update_db() {
-        foreach (array('accounts', 'container', 'crypter', 'hooks', 'hoster', 'internal') as $subfolder) {
+        foreach (array('accounts', 'captcha', 'container', 'crypter', 'hooks', 'hoster', 'internal') as $subfolder) {
             $files = scandir(REPO_PLUGINS_PATH . $subfolder);
             foreach($files as $file) {
                 if(in_array($file, $this->EXCLUDE)) {
