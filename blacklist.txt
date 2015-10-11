@@ -22,6 +22,7 @@ crypter|YoutubeBatch.py
 hooks|AlldebridCom.py
 hooks|Captcha9kw.py
 hooks|CaptchaTrader.py
+hooks|ClickAndLoad.py
 hooks|DebridItaliaCom.py
 hooks|EasybytezCom.py
 hooks|Ev0InFetcher.py
