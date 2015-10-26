@@ -5,6 +5,7 @@ accounts|MegaDebrid.py
 accounts|MultiDebridCom.py
 accounts|NowVideoAt.py
 accounts|Premium4Me.py
+accounts|RyushareCom.py
 accounts|ShareRapidCom.py
 captcha|captcha.py
 container|DLC_25.pyc
