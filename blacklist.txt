@@ -5,6 +5,7 @@ accounts|MegaDebrid.py
 accounts|MultiDebridCom.py
 accounts|NowVideoAt.py
 accounts|Premium4Me.py
+accounts|RyushareCom.py
 accounts|ShareRapidCom.py
 captcha|captcha.py
 container|DLC_25.pyc
@@ -93,6 +94,7 @@ hoster|PandaPlanet.py
 hoster|Premium4Me.py
 hoster|PutlockerCom.py
 hoster|ReloadCc.py
+hoster|SendmywayCom.py
 hoster|Share4webCom.py
 hoster|ShareRapidCom.py
 hoster|Solidfiles.py
