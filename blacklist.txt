@@ -94,6 +94,7 @@ hoster|PandaPlanet.py
 hoster|Premium4Me.py
 hoster|PutlockerCom.py
 hoster|ReloadCc.py
+hoster|SendmywayCom.py
 hoster|Share4webCom.py
 hoster|ShareRapidCom.py
 hoster|Solidfiles.py
