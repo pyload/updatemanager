@@ -102,6 +102,7 @@ hoster|Vipleech4uCom.py
 hoster|XFileSharingPro.py
 internal|AbstractExtractor.py
 internal|MultiHook.py
+internal|SimpleDereferer.py
 internal|XFSPAccount.py
 internal|XFSPCrypter.py
 internal|XFSPHoster.py
