@@ -35,6 +35,7 @@ crypter|DontKnowMe.py
 crypter|DownloadVimeoCom.py
 crypter|Go4Up.py
 crypter|HotfileFolderCom.py
+crypter|ImgurComAlbum.py
 crypter|JunocloudMeFolder.py
 crypter|Movie2kTo.py
 crypter|OneKhDe.py
