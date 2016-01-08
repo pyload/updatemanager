@@ -59,6 +59,7 @@ hooks|FreeWayMe.py
 hooks|FreeWayMeHook.py
 hooks|HighWayMe.py
 hooks|HighWayMeHook.py
+hooks|IRCInterface.py
 hooks|LinkdecrypterCom.py
 hooks|LinksnappyCom.py
 hooks|LinksnappyComHook.py
@@ -106,6 +107,7 @@ hooks|UnrestrictLiHook.py
 hooks|Vipleech4uCom.py
 hooks|WindowsPhoneToastNotify.py
 hooks|XFileSharingPro.py
+hooks|XMPPInterface.py
 hooks|ZeveraCom.py
 hooks|ZeveraComHook.py
 hoster|File4safeCom.py
