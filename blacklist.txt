@@ -20,6 +20,7 @@ accounts|RyushareCom.py
 accounts|ShareRapidCom.py
 accounts|StahnuTo.py
 accounts|UnrestrictLi.py
+accounts|UploadingCom.py
 accounts|Vipleech4uCom.py
 accounts|WarserverCz.py
 accounts|XFileSharingPro.py
