@@ -140,6 +140,7 @@ internal|MultiHook.py
 internal|ReCaptcha.py
 internal|SimpleDereferer.py
 internal|SolveMedia.py
+internal|utils.py
 internal|XFSPAccount.py
 internal|XFSPCrypter.py
 internal|XFSPHoster.py
