@@ -20,6 +20,7 @@ accounts|RyushareCom.py
 accounts|ShareRapidCom.py
 accounts|StahnuTo.py
 accounts|UnrestrictLi.py
+accounts|UploadableCh.py
 accounts|UploadingCom.py
 accounts|Vipleech4uCom.py
 accounts|WarserverCz.py
@@ -30,8 +31,8 @@ container|DLC_25.pyc
 container|DLC_26.pyc
 container|DLC_27.pyc
 container|LinkList.py
-crypter|DailymotionBatch.py
 crypter|C1neonCom.py
+crypter|DailymotionBatch.py
 crypter|DontKnowMe.py
 crypter|DownloadVimeoCom.py
 crypter|Go4Up.py
@@ -40,8 +41,9 @@ crypter|ImgurComAlbum.py
 crypter|JunocloudMeFolder.py
 crypter|Movie2kTo.py
 crypter|OneKhDe.py
-crypter|ShareRapidComFolder.py
 crypter|RapidfileshareNetFolder.py
+crypter|ShareRapidComFolder.py
+crypter|UploadableChFolder.py
 crypter|XFileSharingProFolder.py
 crypter|YoutubeBatch.py
 hooks|AlldebridCom.py
@@ -130,6 +132,7 @@ hoster|SendmywayCom.py
 hoster|Share4webCom.py
 hoster|ShareRapidCom.py
 hoster|Solidfiles.py
+hoster|UploadableCh.py
 hoster|Vipleech4uCom.py
 hoster|XFileSharingPro.py
 internal|AbstractExtractor.py
