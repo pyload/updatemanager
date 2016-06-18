@@ -1,5 +1,6 @@
 accounts|BayfilesCom.py
 accounts|BillionuploadsCom.py
+accounts|BitshareCom.py
 accounts|CyberlockerCh.py
 accounts|DdlstorageCom.py
 accounts|EgoFilesCom.py
