@@ -8,6 +8,7 @@ accounts|File4safeCom.py
 accounts|FileParadoxIn.py
 accounts|HotfileCom.py
 accounts|Keep2shareCc.py
+accounts|LetitbitNet.py 
 accounts|LinestorageCom.py
 accounts|LomafileCom.py
 accounts|MegaDebrid.py
