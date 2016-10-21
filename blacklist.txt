@@ -41,7 +41,6 @@ crypter|Go4Up.py
 crypter|HotfileFolderCom.py
 crypter|ImgurComAlbum.py
 crypter|JunocloudMeFolder.py
-crypter|LetitbitNetFolder.py
 crypter|Movie2kTo.py
 crypter|OneKhDe.py
 crypter|RapidfileshareNetFolder.py
