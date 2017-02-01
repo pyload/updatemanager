@@ -6,6 +6,7 @@ accounts|DdlstorageCom.py
 accounts|EgoFilesCom.py
 accounts|File4safeCom.py
 accounts|FileParadoxIn.py
+accounts|FreeWayMe.py
 accounts|HotfileCom.py
 accounts|Keep2shareCc.py
 accounts|LetitbitNet.py 
