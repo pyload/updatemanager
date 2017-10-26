@@ -1,10 +1,14 @@
 # Build files
-build
+build/
 composer.phar
-vendor
+vendor/
 
 # Local testing output
-logs
+logs/
+data/
 plugins.sqlite
 plugins.txt
-pyload-repo
+blacklist.txt
+
+#PhpStorm
+.idea/

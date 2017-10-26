@@ -1,38 +1,28 @@
 language: php
-
 php:
-  - 5.6
-  - 5.5
-  - 5.4
-  - 5.3
-
+- 7.1
+- 7.0
 matrix:
-  # The app will be deployed on PHP 5.4
-  # so other versions are allowed to fail.
   allow_failures:
-    - 5.6
-    - 5.5
-    - 5.3
-
+  - 7.0
 install:
-  - composer install --dev --no-interaction
-
+- composer install --dev --no-interaction
 script:
-  - tests/run_tests.sh
-
+- vendor/bin/phpunit --version
+- sh tests/run_tests.sh
 after_script:
-  - php vendor/bin/coveralls -v
-
+- php vendor/bin/coveralls -v
+before_deploy:
+- rm -f composer.phar README.md plugins.sqlite blacklist.txt .travis.yml manual_deploy.sh || (exit 0)
+- rm -rf tests data || (exit 0)
+- git commit -a --amend --no-edit || (exit 0)
 deploy:
-  provider: openshift
-  user:
-    secure: 24XmzXKzv2Acp4yAUp/kDn6EyaNeCkjw6X6C/H9s4HqaWckALhZ73QoOm1Lm7aflIrIgQWvo84aTF4MRLDKL3TFQtb6oC2bEFJM4/J9EQhDaazbQGX7e/karXMLSOugRwtYDRRGuWKaMzwxetNAKp35R3q3H7dOLtcOcI9tCWCU=
-  password:
-    secure: BZHiU+Bc3MVcAWr7ouA5qmjat9JW7QcPX4yLZjVoXZWAGopUFLanr4AoPjuGFn+w91F+aIzsJDjwA2zIkSjn/FEJGs+uHcnLvWE5vtEnj6UF8o7yUOhgQwHyYtc0y60oC94qDCTomDbdBYOosDVzkiZGnmL5e2N6YHC+u2Jpltc=
-  app: updatemanager
-  domain: spyload
+  provider: heroku
+  api_key:
+    secure: ekkTT7qgQwlIauXVoFU/A7hXHJ7oqIM/o+KYCr4H1be3BvxIJznHq0VULODTGqTJKYfiknwYquWuiGa5XvNbBnrsWChV2x9Uf/IrsphH18+BAOBSg36ZBmTfhUdcPOi2wGfHEdQFzRaPeOFT4+D3AH4CfCHF9yq++ozA0/MGo/0=
+  app: updatemanager-pyload
   on:
     repo: pyload/updatemanager
     branch: master
-    php: 5.4
+    php: 7.1
   skip_cleanup: true

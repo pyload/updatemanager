@@ -4,9 +4,16 @@
 This is the source code of the pyLoad Update Manager Server, **this software is for project administrators only and not for pyLoad's end users!**
 
 ## Blacklist
-Every plugin listed in the blacklist will be removed in users installation. This is very useful when a plugin needs to be revoked after the update manager has already distributed it.
-To add a plugin to the blacklist just edit `blacklist.txt` and append the plugin name in format: `type|name.py`. Once pushed to the repository the CI system will take care of applying the change automatically.
+Every plugin listed in the blacklist will be removed in users installation.
+<br>This is very useful when a plugin needs to be revoked after the update manager has already distributed it.
+<br>To add a plugin to the blacklist just edit `blacklist.txt` in [pyload/updates](https://github.com/pyload/updates) repository and append the plugin name in format: `type|name.py`.
+<br>Once pushed to the repository the CI system will take care of applying the change automatically.
+
+Note: adding plugins to `blacklist.txt` is unnecessary anymore.
+<br>This process supposed to be fully automated now from now on:
+<br>This because every plugin deletion in the [stable](https://github.com/pyload/pyload/tree/stable) branch will cause the addition of it to the `blacklist.txt` file.
+
 
 ## Build and Deploy
-Every commit will trigger a Travis CI build that will test the code and, if there are no fails, deploy on the OpenShift platform.
+Every commit will trigger a Travis CI build that will test the code and, if there are no fails, deploy on the Heroku platform.
 

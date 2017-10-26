@@ -1,6 +1,0 @@
-#!/bin/bash
-# Trigger an update process after deploy, this
-# way the static file will reflect the code changes
-# immediately, without waiting for a push event from GitHub.
-
-php $OPENSHIFT_REPO_DIR/updater.php

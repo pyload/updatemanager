@@ -1,0 +1,12 @@
+Redirect 301 /index.html https://github.com/pyload/updates/raw/master/plugins.txt
+Redirect 301 /index.php https://github.com/pyload/updates/raw/master/plugins.txt
+
+ErrorDocument 410 "<html><body>Please use HTTPS.</body></html>"
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^.+ - [G,L]
+RewriteCond %{REQUEST_URI} ^(?!/updater.php$).*$
+RewriteRule ^(.+) - [R=404,L]
