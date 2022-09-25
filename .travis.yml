@@ -1,10 +1,6 @@
 language: php
 php:
-- 7.1
-- 7.0
-matrix:
-  allow_failures:
-  - 7.0
+- 8.1
 install:
 - composer install --dev --no-interaction
 script:
@@ -16,13 +12,3 @@ before_deploy:
 - rm -f composer.phar README.md plugins.sqlite blacklist.txt .travis.yml manual_deploy.sh || (exit 0)
 - rm -rf tests data || (exit 0)
 - git commit -a --amend --no-edit || (exit 0)
-deploy:
-  provider: heroku
-  api_key:
-    secure: ekkTT7qgQwlIauXVoFU/A7hXHJ7oqIM/o+KYCr4H1be3BvxIJznHq0VULODTGqTJKYfiknwYquWuiGa5XvNbBnrsWChV2x9Uf/IrsphH18+BAOBSg36ZBmTfhUdcPOi2wGfHEdQFzRaPeOFT4+D3AH4CfCHF9yq++ozA0/MGo/0=
-  app: updatemanager-pyload
-  on:
-    repo: pyload/updatemanager
-    branch: master
-    php: 7.1
-  skip_cleanup: true

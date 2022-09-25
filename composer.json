@@ -1,10 +1,12 @@
 {
     "require": {
-        "katzgrau/klogger": "1.0.*",
-        "ext-sqlite3": "*"
+        "katzgrau/klogger": "1.2.*",
+        "ext-sqlite3": "*",
+        "ext-json": "*",
+        "ext-sockets": "*"
     },
     "require-dev": {
-        "satooshi/php-coveralls": "dev-master",
-        "phpunit/phpunit": "6.3.*"
+        "php-coveralls/php-coveralls": "dev-master",
+        "phpunit/phpunit": "9.5.*"
     }
 }

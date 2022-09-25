@@ -1,6 +1,7 @@
 <?php
 require_once('lib/updatemanager.inc.php');
 require_once('lib/database.inc.php');
+require_once('lib/log.inc.php');
 
 class UpdateManagerTest extends PHPUnit\Framework\TestCase {
     public function testSetupDB() {
@@ -15,7 +16,7 @@ class UpdateManagerTest extends PHPUnit\Framework\TestCase {
         if (end($content) == '')
             $content = array_slice($content, 0, -1);
         $bl = array_search('BLACKLIST', $content);
-        if ($bl != false) {
+        if ($bl !== false) {
             $plugins = array_slice($content, 3, $bl-3);
             $blacklist = array_slice($content, $bl + 1);
         }

@@ -1,0 +1,18 @@
+runtime: php81
+entrypoint: serve updater.php
+
+includes:
+  # Secrets file
+  - env_variables.yaml
+
+handlers:
+  - url: /update
+    script: auto
+    secure: always
+    redirect_http_response_code: 301
+  - url: /robots\.txt
+    static_files: robots.txt
+    upload: robots\.txt
+  - url: /.*
+    static_files: nothing_here.html
+    upload: nothing_here\.html

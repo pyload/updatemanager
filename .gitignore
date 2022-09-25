@@ -6,9 +6,14 @@ vendor/
 # Local testing output
 logs/
 data/
+tests/*.db
+tests/.phpunit.result.cache
 plugins.sqlite
 plugins.txt
 blacklist.txt
 
 #PhpStorm
 .idea/
+
+# Secrets file
+env_variables.yaml

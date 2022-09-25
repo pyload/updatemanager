@@ -1,6 +1,6 @@
 <?php
 define('PLUGIN_LIST', getenv('OPENSHIFT_DATA_DIR') . 'plugins.txt');
-define('LAST_VERSION', '0.4.9');
+define('LAST_VERSION', '0.4.20');
 
 if (! isset($_GET['v'])) {
     exit('ERROR: No version specified!');

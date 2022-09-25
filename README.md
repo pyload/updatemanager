@@ -1,5 +1,5 @@
 # pyLoad Update Manager Server
-[![Build Status](https://travis-ci.org/pyload/updatemanager.svg?branch=master)](https://travis-ci.org/pyload/updatemanager) [![Coverage Status](https://coveralls.io/repos/pyload/updatemanager/badge.svg?branch=master)](https://coveralls.io/r/pyload/updatemanager?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/537a851114c1583cca00004a/badge.svg)](https://www.versioneye.com/user/projects/537a851114c1583cca00004a)
+[![Build Status](https://app.travis-ci.com/pyload/updatemanager.svg?branch=master)](https://travis-ci.org/pyload/updatemanager) [![Coverage Status](https://coveralls.io/repos/pyload/updatemanager/badge.svg?branch=master)](https://coveralls.io/r/pyload/updatemanager?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/537a851114c1583cca00004a/badge.svg)](https://www.versioneye.com/user/projects/537a851114c1583cca00004a)
 
 This is the source code of the pyLoad Update Manager Server, **this software is for project administrators only and not for pyLoad's end users!**
 
@@ -15,5 +15,5 @@ Note: adding plugins to `blacklist.txt` is unnecessary anymore.
 
 
 ## Build and Deploy
-Every commit will trigger a Travis CI build that will test the code and, if there are no fails, deploy on the Heroku platform.
+Every commit will trigger a Travis CI build that will test the code.
 

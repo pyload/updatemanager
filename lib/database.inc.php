@@ -15,7 +15,8 @@ class umSQLite3 extends SQLite3 {
                      UNIQUE(id))');
     }
 
-    public function plugin_exists($type, $name, $version) {
+    public function plugin_exists($type, $name, $version): int
+    {
         /* Returns:
          * 0: The plugin doesn't exists;
          * 1: The plugin exists but the version number is different;
@@ -36,6 +37,12 @@ class umSQLite3 extends SQLite3 {
     }
 
     public function insert_plugin($type, $name, $sha, $version) {
+        $q = $this->prepare('DELETE FROM blacklist
+                             WHERE name=:name AND type=:type');
+        $q->bindValue(':name', $name, SQLITE3_TEXT);
+        $q->bindValue(':type', $type, SQLITE3_TEXT);
+        $q->execute();
+
         $q = $this->prepare('INSERT OR REPLACE INTO plugins
                              VALUES (:name, :type, :sha, :v)');
         $q->bindValue(':name', $name, SQLITE3_TEXT);
@@ -75,7 +82,7 @@ class umSQLite3 extends SQLite3 {
                              WHERE id=0');
         $r = $q->execute();
         $r = $r->fetchArray(SQLITE3_NUM);
-        if(! $r)
+        if(!$r)
             return null;
         else
             return $r[0];
@@ -100,4 +107,3 @@ class umSQLite3 extends SQLite3 {
         return $r;
     }
 }
-?>

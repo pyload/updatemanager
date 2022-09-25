@@ -1,39 +1,27 @@
 <?php
-define('AUTH_FILE', getenv('HOME') . '/.netrc');
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+    define('AUTH_FILE', getenv('USERPROFILE') . '/_netrc');
+} else {
+    define('AUTH_FILE', getenv('HOME') . '/.netrc');
+}
 
-define('PYLOAD_REPO_URL', 'https://github.com/pyload/pyload.git');
-define('PYLOAD_REPO_PATH', 'data/pyload-repo/');
-define('PYLOAD_BRANCH', 'stable');
+define('DATA_PATH', getenv('DATA_PATH') ?: 'data/');
 
-define('SERVER_REPO_URL', 'https://github.com/pyload/updates.git');
-define('SERVER_REPO_PATH', 'data/server-repo/');
+define('PYLOAD_REPO_URL', getenv('PYLOAD_REPO_URL') ?: 'https://github.com/pyload/pyload.git');
+define('PYLOAD_REPO_PATH', getenv('PYLOAD_REPO_PATH') ?: DATA_PATH . 'pyload-repo/');
+define('PYLOAD_BRANCH', getenv('PYLOAD_BRANCH') ?: 'stable');
 
-define('PLUGINS_PATH', 'module/plugins/');
-define('REPO_PLUGINS_PATH', PYLOAD_REPO_PATH . PLUGINS_PATH);
+define('SERVER_REPO_URL', getenv('SERVER_REPO_URL') ?: 'https://github.com/pyload/updates.git');
+define('SERVER_REPO_PATH', getenv('SERVER_REPO_PATH') ?: DATA_PATH .'server-repo/');
 
-define('SQLITEDB_FILE', 'plugins.sqlite'); // Temporary location
-define('PLUGINLIST_FILE', SERVER_REPO_PATH . 'plugins.txt');
-define('BLACKLIST_FILE', SERVER_REPO_PATH . 'blacklist.txt');
-define('VERSION_FILE', SERVER_REPO_PATH . 'VERSION');
+define('PLUGINS_PATH', getenv('PLUGINS_PATH') ?: 'module/plugins/');
+const REPO_PLUGINS_PATH = PYLOAD_REPO_PATH . PLUGINS_PATH;
 
-/* Constants for local test env
-define('AUTH_FILE', getenv('HOME') . '/.netrc');
+const SQLITEDB_FILE = 'plugins.sqlite';
 
-define('PYLOAD_REPO_URL', 'https://github.com/pyload/pyload.git');
-define('PYLOAD_REPO_PATH', 'data/pyload-repo/');
-define('PYLOAD_BRANCH', 'stable');
-
-define('SERVER_REPO_URL', 'https://github.com/pyload/updates.git');
-define('SERVER_REPO_PATH', 'data/server-repo/');
-
-define('PLUGINS_PATH', 'module/plugins/');
-define('REPO_PLUGINS_PATH', PYLOAD_REPO_PATH . PLUGINS_PATH);
-
-define('SQLITEDB_FILE', 'plugins.sqlite'); // Temporary location
-define('PLUGINLIST_FILE', SERVER_REPO_PATH . 'plugins.txt');
-define('BLACKLIST_FILE', SERVER_REPO_PATH . 'blacklist.txt');
-define('VERSION_FILE', SERVER_REPO_PATH . 'VERSION');
-*/
+const PLUGINLIST_FILE = SERVER_REPO_PATH . 'plugins.txt';
+const BLACKLIST_FILE = SERVER_REPO_PATH . 'blacklist.txt';
+const VERSION_FILE = SERVER_REPO_PATH . 'VERSION';
 
 require('vendor/autoload.php');
 require_once('lib/database.inc.php');
@@ -41,13 +29,13 @@ require_once('lib/git.inc.php');
 
 class UpdateManager {
 
-    private $git_pyload;
-    private $git_updserver;
-    private $db;
-    private $l;
+    private GitCMD $git_pyload;
+    private GitCMD $git_updserver;
+    private umSQLite3 $db;
+    private Logger $l;
 
-    public $prev_commit;
-    public $last_commit;
+    public string $prev_commit;
+    public string $last_commit;
 
     function __construct($l) {
         $this->l = $l;
@@ -58,8 +46,8 @@ class UpdateManager {
         $this->git_updserver=new GitCMD($l, SERVER_REPO_URL, SERVER_REPO_PATH, 'master');
 
         if (file_exists(SERVER_REPO_PATH . SQLITEDB_FILE))
-            copy(SERVER_REPO_PATH . SQLITEDB_FILE, SQLITEDB_FILE);
-        $this->db = new umSQLite3(SQLITEDB_FILE);
+            copy(SERVER_REPO_PATH . SQLITEDB_FILE, DATA_PATH . SQLITEDB_FILE);
+        $this->db = new umSQLite3(DATA_PATH . SQLITEDB_FILE);
         $this->prev_commit = $this->db->get_prev_commit();
         $this->l->info("Prev commit: " . (is_null($this->prev_commit) ? "None" : $this->prev_commit));
 
@@ -70,7 +58,7 @@ class UpdateManager {
     }
 
     function __destruct() {
-        if (!is_null($this->db)) {
+        if (isset($this->db)) {
             $this->db->close();
         }
     }
@@ -80,13 +68,13 @@ class UpdateManager {
         if (!file_exists($path))
             $path = "https://raw.githubusercontent.com/pyload/pyload/$this->last_commit/module/plugins/$type/$name";
         $content = file_get_contents($path);
-        if ($content == false) {
-            $this->l-error("Unable to detect version for $type/$name\nFailed to download file $path");
+        if (!$content) {
+            $this->l->error("Unable to detect version for $type/$name\nFailed to download file $path");
             return null;
         }
         $status = preg_match('/__version__\s*=\s*[\'"]([^\'"]+)[\'"]/i', $content, $m);
         if(!$status || !isset($m[1])) {
-            $this->l-error("Unable to detect version for $type/$name");
+            $this->l->error("Unable to detect version for $type/$name");
             return null;
         }
         else {
@@ -94,9 +82,10 @@ class UpdateManager {
         }
     }
 
-    private function get_nametype($module) {
+    private function get_nametype($module): array
+    {
         if (preg_match('~' . PLUGINS_PATH . '(.+?)/(.+)~', $module, $m)  != 1) {
-            $this->l-error("Unable to detect type or name for mosule $module");
+            $this->l->error("Unable to detect type or name for module $module");
             return array(null, null);
         }
         else
@@ -169,7 +158,7 @@ class UpdateManager {
 
         // Blacklist
         $content = file_get_contents(BLACKLIST_FILE);
-        if ($content != false) {
+        if ($content) {
             $modules = explode(PHP_EOL, $content);
             if (end($modules) == '')
                 $modules = array_slice($modules, 0, -1);
@@ -185,8 +174,8 @@ class UpdateManager {
 
     public function write_static() {
         $version = file_get_contents(VERSION_FILE);
-        if ($version == false) {
-            $version = '0.4.9';
+        if (!$version) {
+            $version = '0.4.20';
             file_put_contents(VERSION_FILE, $version);
         }
 
@@ -209,7 +198,8 @@ class UpdateManager {
         fclose($f1);
     }
 
-    public function push_server() {
+    public function push_server(): bool
+    {
         $this->git_updserver->set_ident(getenv('GIT_USER'), getenv('GIT_USER') . "@users.noreply.github.com");
         if ($this->git_updserver->commit()) {
             $this->git_updserver->push();
@@ -232,7 +222,7 @@ class UpdateManager {
             if ($dry_run) {
                 $this->l->info("There are pending changes, dry run - not pushing.");
             } else {
-                rename(SQLITEDB_FILE, SERVER_REPO_PATH . SQLITEDB_FILE);
+                rename( DATA_PATH . SQLITEDB_FILE, SERVER_REPO_PATH . SQLITEDB_FILE);
                 if ($this->push_server()) {
                     $this->l->info("Server updated.");
                 } else {
@@ -244,4 +234,3 @@ class UpdateManager {
         }
     }
 }
-?>

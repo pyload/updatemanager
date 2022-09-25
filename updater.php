@@ -11,6 +11,22 @@ $l = new \Logger();
 
 if (php_sapi_name() != 'cli') {
     header('Content-Type: text/plain');
+
+    $remoteaddr = $_SERVER['HTTP_X_APPENGINE_USER_IP'] ?? null;
+    $country = $_SERVER['HTTP_X_APPENGINE_COUNTRY'] ?? null;
+    $city = $_SERVER['HTTP_X_APPENGINE_CITY'] ?? null;
+    if ($remoteaddr)
+        $l->debug("Got request from $remoteaddr ($city, $country)");
+    $get = $_GET;
+    if (isset($get['key']))
+        $get['key'] = "********";
+    $qs = array();
+    foreach($get as $key => $value) {
+        array_push($qs, "$key=$value");
+    }
+    $qs = implode("&", $qs);
+    $l->debug("Request query string: $qs");
+
     if (isset($_SERVER['HTTP_USER_AGENT']) && substr($_SERVER['HTTP_USER_AGENT'], 0, 16) == 'GitHub-Hookshot/') {
         if (!isset($_SERVER['HTTP_X_GITHUB_EVENT']) || $_SERVER['HTTP_X_GITHUB_EVENT'] != 'push') {
             $l->info('Not a push event.');
@@ -26,9 +42,9 @@ if (php_sapi_name() != 'cli') {
     else
         $payload = null;
 
-    $key = isset($_GET['key']) ? $_GET['key'] : null;
+    $key = $_GET['key'] ?? null;
     if ($key) {
-        if (hash("sha256", trim($key)) != '49e4b829958ce1a36af08a0ff03b9897be3653cbd979a03651f2dd1bb3d98733') {
+        if (hash("sha256", trim($key)) != '5b80c6b93b3d760d3889079814d28cb41cbfacae2d31620f99c602150986304c') {
             $l->error("Invalid key. Exiting.");
             header('HTTP/1.0 403 Forbidden');
             exit(1);
@@ -53,9 +69,9 @@ if (php_sapi_name() != 'cli') {
 
         $json = json_decode($payload, true);
 
-        // Ignore commits from our self to avoid infinite webhook calls
+        // Ignore commits from ourself to avoid infinite webhook calls
         if ($json['pusher']['name'] == getenv('GIT_USER')) {
-            $l->info('Ignoring commit from our self.');
+            $l->info('Ignoring commit from ourself.');
             exit(0);
         }
 
@@ -86,7 +102,7 @@ if (php_sapi_name() != 'cli') {
 
 $l->info('Update process started.');
 
-$dry_run = isset($_GET['dry_run']) && trim($_GET['dry_run']) == '1' || php_sapi_name() == 'cli' && $argc > 1 && $argv[1] == '--dry-run';
+$dry_run = isset($_GET['dry_run']) && trim($_GET['dry_run']) == '1' || isset($argc) && $argc > 1 && $argv[1] == '--dry-run';
 if ($dry_run) {
     $l->info("Dry run specified.");
 }
@@ -97,7 +113,6 @@ $um->update($dry_run);
 $l->info('Update process finished.');
 
 $seconds = time() - $starttime;
-$mins = floor($seconds / 60 % 60);
+$mins = floor(intval($seconds / 60) % 60);
 $secs = floor($seconds % 60);
 $l->info("Elapsed time: $mins minutes and $secs seconds.");
-?>

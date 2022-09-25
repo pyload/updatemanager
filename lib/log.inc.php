@@ -1,16 +1,16 @@
 <?php
 require('vendor/autoload.php');
 
-define('LOGDIR', 'logs');
+const LOGDIR = 'logs';
 define('RSYSLOG_SERVER', getenv('RSYSLOG_SERVER'));
 define('RSYSLOG_PORT', getenv('RSYSLOG_PORT'));
 
 
 class Logger
 {
-    private $klogger;
-    private $cli;
-    private $rsyslog;
+    private ?\Katzgrau\KLogger\Logger $klogger;
+    private bool $cli;
+    private bool $rsyslog;
 
     function __construct()
     {
@@ -31,7 +31,8 @@ class Logger
     }
 
     public function debug($msg) {
-        print($msg . PHP_EOL);
+        if (!$this->rsyslog && is_null($this->klogger))
+            print($msg . PHP_EOL);
         if ($this->rsyslog)
             $this->send_remote_syslog("[DEBUG] " . $msg);
         if (!is_null($this->klogger))
@@ -62,4 +63,3 @@ class Logger
                 $this->klogger->error($msg);
     }
 }
-?>
